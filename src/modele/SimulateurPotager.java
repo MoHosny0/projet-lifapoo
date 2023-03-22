@@ -11,6 +11,7 @@ import modele.environnement.CaseCultivable;
 import modele.environnement.CaseNonCultivable;
 
 import java.awt.Point;
+import java.util.HashMap;
 import java.util.Random;
 
 
@@ -24,12 +25,15 @@ public class SimulateurPotager {
     // private HashMap<Case, Point> map = new  HashMap<Case, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
     private Case[][] grilleCases = new Case[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
 
+    private HashMap<String, Integer> inventaire;
+
     public SimulateurPotager() {
 
         initialisationDesEntites();
 
         simMet = new SimulateurMeteo(this);
 
+        inventaire = new HashMap<String, Integer>();
     }
 
 
@@ -87,6 +91,15 @@ public class SimulateurPotager {
     private Case objetALaPosition(Point p) {
         Case retour = null;
         return grilleCases[p.x][p.y];
+    }
+
+    public void recolter(String legume) {
+        if (inventaire.containsKey(legume)) {
+            inventaire.replace(legume, inventaire.get(legume) + 1);
+        } else {
+            inventaire.put(legume, 1);
+        }
+        System.out.println("Vous avez " + inventaire.get(legume) + " " + legume);
     }
 
 }

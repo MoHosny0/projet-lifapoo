@@ -17,7 +17,12 @@ public class CaseCultivable extends Case {
             legume = new Salade();
 
         } else {
+            String type = legume.getClass().toString().substring(
+                    legume.getClass().toString().lastIndexOf('.')+1
+            );
+            simulateurPotager.recolter(type);
             legume = null;
+            System.out.println(type + " à été récolté");
         }
     }
 
