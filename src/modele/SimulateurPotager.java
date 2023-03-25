@@ -9,6 +9,7 @@ package modele;
 import modele.environnement.Case;
 import modele.environnement.CaseCultivable;
 import modele.environnement.CaseNonCultivable;
+import modele.environnement.varietes.Varietes;
 
 import java.awt.Point;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class SimulateurPotager {
     // private HashMap<Case, Point> map = new  HashMap<Case, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
     private Case[][] grilleCases = new Case[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
 
-    private HashMap<String, Integer> inventaire;
+    private HashMap<Varietes, Integer> inventaire;
 
     public SimulateurPotager() {
 
@@ -33,7 +34,7 @@ public class SimulateurPotager {
 
         simMet = new SimulateurMeteo(this);
 
-        inventaire = new HashMap<String, Integer>();
+        inventaire = new HashMap<>();
     }
 
 
@@ -41,6 +42,7 @@ public class SimulateurPotager {
     public Case[][] getPlateau() {
         return grilleCases;
     }
+    public HashMap<Varietes, Integer> getInventaire() {return inventaire;}
     
     private void initialisationDesEntites() {
 
@@ -93,7 +95,7 @@ public class SimulateurPotager {
         return grilleCases[p.x][p.y];
     }
 
-    public void recolter(String legume) {
+    public void recolter(Varietes legume) {
         if (inventaire.containsKey(legume)) {
             inventaire.replace(legume, inventaire.get(legume) + 1);
         } else {

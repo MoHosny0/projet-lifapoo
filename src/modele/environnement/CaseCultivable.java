@@ -3,6 +3,7 @@ package modele.environnement;
 import modele.SimulateurPotager;
 import modele.environnement.varietes.Legume;
 import modele.environnement.varietes.Salade;
+import modele.environnement.varietes.Varietes;
 
 public class CaseCultivable extends Case {
 
@@ -17,12 +18,10 @@ public class CaseCultivable extends Case {
             legume = new Salade();
 
         } else {
-            String type = legume.getClass().toString().substring(
-                    legume.getClass().toString().lastIndexOf('.')+1
-            );
-            simulateurPotager.recolter(type);
+            Varietes variete = legume.getVariete();
+            simulateurPotager.recolter(variete);
             legume = null;
-            System.out.println(type + " à été récolté");
+            System.out.println(variete.name() + " à été récolté");
         }
     }
 
