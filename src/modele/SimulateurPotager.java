@@ -12,7 +12,7 @@ import modele.environnement.CaseNonCultivable;
 import modele.environnement.varietes.Varietes;
 
 import java.awt.Point;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Random;
 
 
@@ -26,7 +26,7 @@ public class SimulateurPotager {
     // private HashMap<Case, Point> map = new  HashMap<Case, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
     private Case[][] grilleCases = new Case[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
 
-    private HashMap<Varietes, Integer> inventaire;
+    private EnumMap<Varietes, Integer> inventaire;
 
     public SimulateurPotager() {
 
@@ -34,7 +34,7 @@ public class SimulateurPotager {
 
         simMet = new SimulateurMeteo(this);
 
-        inventaire = new HashMap<>();
+        inventaire = new EnumMap<>(Varietes.class);
     }
 
 
@@ -42,7 +42,7 @@ public class SimulateurPotager {
     public Case[][] getPlateau() {
         return grilleCases;
     }
-    public HashMap<Varietes, Integer> getInventaire() {return inventaire;}
+    public EnumMap<Varietes, Integer> getInventaire() {return inventaire;}
     
     private void initialisationDesEntites() {
 
