@@ -1,8 +1,10 @@
 package modele.environnement;
 
 import modele.SimulateurPotager;
+import modele.environnement.varietes.Carrotte;
 import modele.environnement.varietes.Legume;
 import modele.environnement.varietes.Salade;
+import modele.environnement.varietes.Varietes;
 
 public class CaseCultivable extends Case {
 
@@ -14,8 +16,15 @@ public class CaseCultivable extends Case {
     @Override
     public void actionUtilisateur() {
         if (legume == null) {
-            legume = new Salade();
-
+            Varietes variete = simulateurPotager.nouveauLegume();
+            switch (variete) {
+                case salade:
+                    legume = new Salade();
+                    break;
+                case carrotte:
+                    legume = new Carrotte();
+                    break;
+            }
         } else {
             legume = null;
         }

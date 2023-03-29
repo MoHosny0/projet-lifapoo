@@ -9,6 +9,8 @@ package modele;
 import modele.environnement.Case;
 import modele.environnement.CaseCultivable;
 import modele.environnement.CaseNonCultivable;
+import modele.environnement.varietes.Legume;
+import modele.environnement.varietes.Varietes;
 
 import java.awt.Point;
 import java.util.Random;
@@ -31,9 +33,6 @@ public class SimulateurPotager {
         simMet = new SimulateurMeteo(this);
 
     }
-
-
-    
     public Case[][] getPlateau() {
         return grilleCases;
     }
@@ -87,6 +86,10 @@ public class SimulateurPotager {
     private Case objetALaPosition(Point p) {
         Case retour = null;
         return grilleCases[p.x][p.y];
+    }
+
+    public Varietes nouveauLegume() {
+        return Varietes.varietesAleatoire();
     }
 
 }
