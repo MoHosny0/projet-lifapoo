@@ -29,11 +29,13 @@ public class VueControleurPotager extends JFrame implements Observer {
     private int sizeX; // taille de la grille affichée
     private int sizeY;
 
-    // icones affichées dans la grille
+    //icones affichées dans la grille
     private ImageIcon icoSalade;
     private ImageIcon icoTerre;
     private ImageIcon icoVide;
     private ImageIcon icoMur;
+    private ImageIcon icoCarrotte;
+
 
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
@@ -72,6 +74,7 @@ public class VueControleurPotager extends JFrame implements Observer {
         icoVide = chargerIcone("Images/Vide.png");
         icoMur = chargerIcone("Images/Mur.png");
         icoTerre = chargerIcone("Images/Terre.png");
+        icoCarrotte = chargerIcone("Images/data.png", 396, 392, 140, 140);
     }
 
     private void placerLesComposantsGraphiques() {
@@ -134,7 +137,12 @@ public class VueControleurPotager extends JFrame implements Observer {
                     if (legume != null) {
 
                         switch (legume.getVariete()) {
-                            case salade: tabJLabel[x][y].setIcon(icoSalade); break;
+                            case salade:
+                                tabJLabel[x][y].setIcon(icoSalade);
+                                break;
+                            case carrotte:
+                                tabJLabel[x][y].setIcon(icoCarrotte);
+                                break;
                         }
 
                     } else {
