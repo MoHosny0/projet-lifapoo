@@ -36,9 +36,6 @@ public class SimulateurPotager {
 
         inventaire = new EnumMap<>(Varietes.class);
     }
-
-
-    
     public Case[][] getPlateau() {
         return grilleCases;
     }
@@ -102,6 +99,10 @@ public class SimulateurPotager {
             inventaire.put(legume, 1);
         }
         System.out.println("Vous avez " + inventaire.get(legume) + " " + legume);
+    }
+
+    public Varietes nouveauLegume() {
+        return Varietes.varietesAleatoire();
     }
 
 }
