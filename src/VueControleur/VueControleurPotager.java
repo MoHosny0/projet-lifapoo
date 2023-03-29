@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
@@ -35,6 +37,9 @@ public class VueControleurPotager extends JFrame implements Observer {
     private ImageIcon icoVide;
     private ImageIcon icoMur;
 
+    private JPanel panneauInventaire;
+    private HashMap<String, JTextField> texteInventaire;
+
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
 
@@ -47,6 +52,17 @@ public class VueControleurPotager extends JFrame implements Observer {
         chargerLesIcones();
         placerLesComposantsGraphiques();
         //ajouterEcouteurClavier(); // si besoin
+    }
+
+
+    // L'enumeration Variete est propre au modele. On modifie donc la cle
+    // du dictionnaire en String
+    private HashMap<String, Integer> getInventairePotager() {
+        HashMap<String, Integer> inventaire = new HashMap<>();
+        simulateurPotager.getInventaire().forEach((k,v) -> {
+            inventaire.put(k.name(), v);
+        });
+        return inventaire;
     }
 /*
     private void ajouterEcouteurClavier() {
@@ -85,7 +101,11 @@ public class VueControleurPotager extends JFrame implements Observer {
         jtf.setEditable(false);
         infos.add(jtf);
 
+        panneauInventaire = new JPanel(new BorderLayout());
+        texteInventaire = new HashMap<>();
+
         add(infos, BorderLayout.EAST);
+        add(panneauInventaire, BorderLayout.WEST);
 
 
 
@@ -152,19 +172,28 @@ public class VueControleurPotager extends JFrame implements Observer {
                 }
             }
         }
+
+        getInventairePotager().forEach((l, q) -> {
+            if (texteInventaire.containsKey(l)) {
+                texteInventaire.get(l).setText(l + " : " + q.toString());
+            } else {
+                texteInventaire.put(l, new JTextField(l + " : " + q.toString()));
+                panneauInventaire.add(texteInventaire.get(l));
+            }
+        });
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        mettreAJourAffichage();
-        /*
+        //mettreAJourAffichage();
+        ///*
         SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                         mettreAJourAffichage();
                     }
                 }); 
-        */
+        //*/
 
     }
 
