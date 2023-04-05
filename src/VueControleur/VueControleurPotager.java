@@ -91,7 +91,7 @@ public class VueControleurPotager extends JFrame implements Observer {
 
     private void placerLesComposantsGraphiques() {
         setTitle("A vegetable garden");
-        setSize(540, 250);
+        setSize(600, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JPanel infos = new JPanel();
@@ -102,6 +102,7 @@ public class VueControleurPotager extends JFrame implements Observer {
 
         panneauInventaire = new JPanel();
         panneauInventaire.setLayout(new BoxLayout(panneauInventaire, BoxLayout.PAGE_AXIS));
+        panneauInventaire.add(new JLabel("Inventaire :"));
         texteInventaire = new HashMap<>();
 
         add(infos, BorderLayout.EAST);
@@ -110,7 +111,6 @@ public class VueControleurPotager extends JFrame implements Observer {
 
 
         JComponent grilleJLabels = new JPanel(new GridLayout(sizeY, sizeX)); // grilleJLabels va contenir les cases graphiques et les positionner sous la forme d'une grille
-
         tabJLabel = new JLabel[sizeX][sizeY];
 
         for (int y = 0; y < sizeY; y++) {
@@ -122,6 +122,7 @@ public class VueControleurPotager extends JFrame implements Observer {
             }
         }
         add(grilleJLabels, BorderLayout.CENTER);
+
 
         // écouter les évènements
 
