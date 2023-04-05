@@ -8,7 +8,7 @@ public class Carrotte extends Legume {
     }
 
     @Override
-    protected void croissance() { //croissance(int temperature, int hydrometrie, int ensoleillement)
+    public void croissance(int temperature, int hydrometrie, int ensoleillement) { //
         // TODO
     }
 }

@@ -33,16 +33,16 @@ public class SimulateurPotager {
     }
 
     //done
-    /* 
+    
     public SimulateurMeteo getSimMet() {
         return simMet;
     }
 
-*/
+
     // DONE
     // Elle parcoure la grille et appelle la méthode updateCase sur chaque instance de CaseCultivable
     // avec les nouvelles conditions météorologiques.
-    /* 
+    
     public void updateEnvironment(int temperature, int hydrometrie, int ensoleillement) {
             for (int x = 0; x < SIZE_X; x++) {
                 for (int y = 0; y < SIZE_Y; y++) {
@@ -55,7 +55,7 @@ public class SimulateurPotager {
         }
 
     
-*/
+
 
     
     public Case[][] getPlateau() {

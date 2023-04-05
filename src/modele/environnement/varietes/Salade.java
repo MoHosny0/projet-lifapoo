@@ -7,20 +7,20 @@ public class Salade extends Legume {
     }
 
     @Override
-    public void croissance() { //croissance(int temperature, int hydrometrie, int ensoleillement)
+    public void croissance(int temperature, int hydrometrie, int ensoleillement){
         // TODO
-        System.out.println("Une salade pousse !!");
+        //System.out.println("Une salade pousse !!");
 
 
-        /*
-         exemple  
+        
+        // exemple  
 
 
-          if (temperature >= 10 && temperature <= 30 && hydrometrie >= 40 && ensoleillement >= 50) {
+          if (temperature >= 10 && temperature <= 11 && hydrometrie >= 40 && ensoleillement >= 50) {
             System.out.println("Une salade pousse !!");
         } else {
             System.out.println("Les conditions ne sont pas favorables pour la croissance");
         }
-         */
+         
     }
 }

@@ -45,22 +45,16 @@ public class SimulateurMeteo implements Runnable {
     private int hydrometrie;
     private int ensoleillement;
 
-/* 
+ 
     public int[] getCondition(){
 
         return new int[] {temperature, hydrometrie, ensoleillement};
 
     }
-*/
+
     @Override
     public void run() {
         // TODO 
-        
-
-        // fix problem here la boucle 
-
-        try {
-            Thread.sleep(1000); // pause for one second
     
             long currentTime = System.currentTimeMillis();
             double elapsedTime = (currentTime - startTime) / 1000.0;
@@ -71,12 +65,10 @@ public class SimulateurMeteo implements Runnable {
             ensoleillement = (int) (Moyenne_ensol + Amplitude_ensol * Math.sin(2 * PI * elapsedTime / 86400 + PI / 2));
     
             // Mettre à jour l'environnement avec les nouvelles conditions
-            //simPot.updateEnvironment(temperature, hydrometrie, ensoleillement);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            simPot.updateEnvironment(temperature, hydrometrie, ensoleillement);
     }
 }
-}
+
 
 
 

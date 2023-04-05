@@ -13,17 +13,17 @@ public class CaseCultivable extends Case {
     }
 
     //DONE
-   // public void updateCase(int temperature, int hydrometrie, int ensoleillement) {
+    public void updateCase(int temperature, int hydrometrie, int ensoleillement) {
 
         //TODOOO
     // Mettre à jour l'état de la case enfonction des conditions météorologiques actuelles.
     
 
-    /* if (legume != null) {
-        legume.croissance( );  //croissance( temperature, hydrometrie, ensoleillement)
+     if (legume != null) {
+        legume.croissance( temperature, hydrometrie, ensoleillement);
     }
-*/
-    //}
+
+    }
 
 
     @Override
@@ -44,8 +44,8 @@ public class CaseCultivable extends Case {
     public void run() {
         if (legume != null) {
             
-           // int[] conditions = simulateurPotager.getSimMet().getCondition();
-            legume.nextStep(); //nextStep(conditions[0], conditions[1], conditions[2])
+            int[] conditions = simulateurPotager.getSimMet().getCondition(); // get up to date conditions
+            legume.nextStep(conditions[0], conditions[1], conditions[2]); // utiliser next step avec les nouveau condition.
         }
     }
 }
