@@ -8,7 +8,7 @@ public class Carrotte extends Legume {
     }
 
     @Override
-    protected void croissance() {
+    public void croissance(int temperature, int hydrometrie, int ensoleillement) { //
         // TODO
         System.out.println("Une carrotte pousse !");
     }
