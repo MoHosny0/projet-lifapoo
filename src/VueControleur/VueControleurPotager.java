@@ -41,7 +41,7 @@ public class VueControleurPotager extends JFrame implements Observer {
 
 
     private JPanel panneauInventaire;
-    private HashMap<String, JTextField> texteInventaire;
+    private HashMap<String, JLabel> texteInventaire;
 
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
@@ -106,7 +106,8 @@ public class VueControleurPotager extends JFrame implements Observer {
         jtf.setEditable(false);
         infos.add(jtf);
 
-        panneauInventaire = new JPanel(new BorderLayout());
+        panneauInventaire = new JPanel();
+        panneauInventaire.setLayout(new BoxLayout(panneauInventaire, BoxLayout.PAGE_AXIS));
         texteInventaire = new HashMap<>();
 
         add(infos, BorderLayout.EAST);
@@ -189,7 +190,7 @@ public class VueControleurPotager extends JFrame implements Observer {
             if (texteInventaire.containsKey(l)) {
                 texteInventaire.get(l).setText(l + " : " + q.toString());
             } else {
-                texteInventaire.put(l, new JTextField(l + " : " + q.toString()));
+                texteInventaire.put(l, new JLabel(l + " : " + q.toString(), icoSalade, SwingConstants.LEFT));
                 panneauInventaire.add(texteInventaire.get(l));
             }
         });
