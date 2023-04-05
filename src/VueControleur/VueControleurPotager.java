@@ -32,12 +32,7 @@ public class VueControleurPotager extends JFrame implements Observer {
     private int sizeY;
 
     //icones affichées dans la grille
-    private ImageIcon icoSalade;
-    private ImageIcon icoTerre;
-    private ImageIcon icoVide;
-    private ImageIcon icoMur;
-    private ImageIcon icoCarrotte;
-    private ImageIcon icoBetterave;
+    private HashMap<String, ImageIcon> icones;
 
 
     private JPanel panneauInventaire;
@@ -85,14 +80,13 @@ public class VueControleurPotager extends JFrame implements Observer {
 
     private void chargerLesIcones() {
     	// image libre de droits utilisée pour les légumes : https://www.vecteezy.com/vector-art/2559196-bundle-of-fruits-and-vegetables-icons	
-    
-
-        icoSalade = chargerIcone("Images/data.png", 0, 0, 120, 120);//chargerIcone("Images/Pacman.png");
-        icoVide = chargerIcone("Images/Vide.png");
-        icoMur = chargerIcone("Images/Mur.png");
-        icoTerre = chargerIcone("Images/Terre.png");
-        icoCarrotte = chargerIcone("Images/data.png", 396, 392, 140, 140);
-        icoBetterave = chargerIcone("Images/data.png", 781, 781, 140, 140);
+        icones = new HashMap<>();
+        icones.put("vide", chargerIcone("Images/Vide.png"));
+        icones.put("mur", chargerIcone("Images/Mur.png"));
+        icones.put("terre", chargerIcone("Images/Terre.png"));
+        icones.put("salade", chargerIcone("Images/data.png", 0, 0, 120, 120));
+        icones.put("carrotte", chargerIcone("Images/data.png", 396, 392, 140, 140));
+        icones.put("betterave", chargerIcone("Images/data.png", 781, 781, 140, 140));
     }
 
     private void placerLesComposantsGraphiques() {
@@ -158,30 +152,19 @@ public class VueControleurPotager extends JFrame implements Observer {
                     Legume legume = ((CaseCultivable) simulateurPotager.getPlateau()[x][y]).getLegume();
 
                     if (legume != null) {
-
-                        switch (legume.getVariete()) {
-                            case salade:
-                                tabJLabel[x][y].setIcon(icoSalade);
-                                break;
-                            case carrotte:
-                                tabJLabel[x][y].setIcon(icoCarrotte);
-                                break;
-                            case betterave:
-                                tabJLabel[x][y].setIcon(icoBetterave);
-                        }
-
+                        tabJLabel[x][y].setIcon(icones.get(legume.getVariete().name()));
                     } else {
-                        tabJLabel[x][y].setIcon(icoTerre);
+                        tabJLabel[x][y].setIcon(icones.get("terre"));
                     }
 
                     // si transparence : images avec canal alpha + dessins manuels (voir ci-dessous + créer composant qui redéfinie paint(Graphics g)), se documenter
                     //BufferedImage bi = getImage("Images/smick.png", 0, 0, 20, 20);
                     //tabJLabel[x][y].getGraphics().drawImage(bi, 0, 0, null);
                 } else if (simulateurPotager.getPlateau()[x][y] instanceof CaseNonCultivable) {
-                    tabJLabel[x][y].setIcon(icoMur);
+                    tabJLabel[x][y].setIcon(icones.get("mur"));
                 } else {
 
-                    tabJLabel[x][y].setIcon(icoVide);
+                    tabJLabel[x][y].setIcon(icones.get("vide"));
                 }
             }
         }
@@ -190,7 +173,11 @@ public class VueControleurPotager extends JFrame implements Observer {
             if (texteInventaire.containsKey(l)) {
                 texteInventaire.get(l).setText(l + " : " + q.toString());
             } else {
-                texteInventaire.put(l, new JLabel(l + " : " + q.toString(), icoSalade, SwingConstants.LEFT));
+                texteInventaire.put(l, new JLabel(
+                        l + " : " + q.toString(),
+                        icones.get(l),
+                        SwingConstants.LEFT
+                ));
                 panneauInventaire.add(texteInventaire.get(l));
             }
         });
