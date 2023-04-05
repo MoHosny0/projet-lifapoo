@@ -37,6 +37,7 @@ public class VueControleurPotager extends JFrame implements Observer {
     private ImageIcon icoVide;
     private ImageIcon icoMur;
     private ImageIcon icoCarrotte;
+    private ImageIcon icoBetterave;
 
 
     private JPanel panneauInventaire;
@@ -91,6 +92,7 @@ public class VueControleurPotager extends JFrame implements Observer {
         icoMur = chargerIcone("Images/Mur.png");
         icoTerre = chargerIcone("Images/Terre.png");
         icoCarrotte = chargerIcone("Images/data.png", 396, 392, 140, 140);
+        icoBetterave = chargerIcone("Images/data.png", 781, 781, 140, 140);
     }
 
     private void placerLesComposantsGraphiques() {
@@ -163,6 +165,8 @@ public class VueControleurPotager extends JFrame implements Observer {
                             case carrotte:
                                 tabJLabel[x][y].setIcon(icoCarrotte);
                                 break;
+                            case betterave:
+                                tabJLabel[x][y].setIcon(icoBetterave);
                         }
 
                     } else {

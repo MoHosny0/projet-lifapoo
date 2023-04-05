@@ -1,10 +1,7 @@
 package modele.environnement;
 
 import modele.SimulateurPotager;
-import modele.environnement.varietes.Carrotte;
-import modele.environnement.varietes.Legume;
-import modele.environnement.varietes.Salade;
-import modele.environnement.varietes.Varietes;
+import modele.environnement.varietes.*;
 
 public class CaseCultivable extends Case {
 
@@ -23,6 +20,9 @@ public class CaseCultivable extends Case {
                     break;
                 case carrotte:
                     legume = new Carrotte();
+                    break;
+                case betterave:
+                    legume = new Betterave();
                     break;
             }
         } else {
