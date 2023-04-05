@@ -15,8 +15,8 @@ public class Salade extends Legume {
         
         // exemple  
 
-
-          if (temperature >= 10 && temperature <= 11 && hydrometrie >= 40 && ensoleillement >= 50) {
+        
+          if (temperature >= 10 && temperature <= 20 && hydrometrie >= 40 && ensoleillement >= 50) {
             System.out.println("Une salade pousse !!");
         } else {
             System.out.println("Les conditions ne sont pas favorables pour la croissance");
